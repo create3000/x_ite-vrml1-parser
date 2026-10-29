@@ -1,0 +1,49 @@
+{
+  "name": "x_ite-vrml1-parser",
+  "version": "1.0.0",
+  "description": "VRML1 File Format Parser for X_ITE",
+  "main": "dist/x_ite-vrml1-parser.js",
+  "module": "dist/x_ite-vrml1-parser.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "dist": "node build/dist.js",
+    "prerelease": "npm run dist",
+    "release": "node build/release.js",
+    "vrml1": "node build/vrml1.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/create3000/x_ite-vrml1-parser.git"
+  },
+  "keywords": [
+    "3D",
+    "Browser",
+    "JavaScript",
+    "Node",
+    "VRML1",
+    "x_ite",
+    "X3D"
+  ],
+  "author": "Holger Seelig <holger.seelig@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/create3000/x_ite-vrml1-parser/issues"
+  },
+  "homepage": "https://github.com/create3000/x_ite-vrml1-parser#readme",
+  "funding": {
+    "type": "patreon",
+    "url": "https://patreon.com/X_ITE"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "shell-tools": "^1.1.9",
+    "terser-webpack-plugin": "^5.6.1",
+    "webpack": "^5.112.0",
+    "webpack-cli": "^7.2.3",
+    "x_ite-extension": "^1.0.2"
+  }
+}

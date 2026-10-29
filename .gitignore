@@ -1,0 +1,5 @@
+/node_modules/
+/docs/ssl
+/build-sog/
+
+**/.DS_Store
