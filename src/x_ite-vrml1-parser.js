@@ -63,14 +63,6 @@ return class VRML1Parser extends X3D .X3DParser
       ["MFMatrix",  "MFMatrix4f"],
    ]);
 
-   constructor (scene)
-   {
-      super (scene);
-
-      this .namedNodes = new Map ();
-      this .rootNodes  = [ ];
-   }
-
    getEncoding ()
    {
       return "STRING";
@@ -90,6 +82,13 @@ return class VRML1Parser extends X3D .X3DParser
 
    parseIntoScene (resolve, reject)
    {
+      this .parser     = new X3D .VRMLParser (this .getScene ());
+      this .namedNodes = new Map ();
+      this .rootNodes  = [ ];
+
+      this .parser .pushExecutionContext (this .getScene ());
+      this .parser .setInput (this .input);
+
       this .vrml1 ()
          .then (resolve)
          .catch (reject);
@@ -331,7 +330,7 @@ return class VRML1Parser extends X3D .X3DParser
 
    fieldValue (field)
    {
-
+      return this [field .getType ()] .call (this .parser, field, field .getUnit ());
    }
 
    Id ()
@@ -340,5 +339,56 @@ return class VRML1Parser extends X3D .X3DParser
 
       return Grammar .Id .parse (this);
    }
+
+   [X3D .X3DConstants .SFBool]      = X3D .VRMLParser .prototype .sfboolValu;
+   [X3D .X3DConstants .SFColor]     = X3D .VRMLParser .prototype .sfcolorValue;
+   [X3D .X3DConstants .SFColorRGBA] = X3D .VRMLParser .prototype .sfcolorrgbaValue;
+   [X3D .X3DConstants .SFDouble]    = X3D .VRMLParser .prototype .sfdoubleValue;
+   [X3D .X3DConstants .SFFloat]     = X3D .VRMLParser .prototype .sfdoubleValue;
+   [X3D .X3DConstants .SFImage]     = X3D .VRMLParser .prototype .sfimageValue;
+   [X3D .X3DConstants .SFInt32]     = X3D .VRMLParser .prototype .sfint32Value;
+   [X3D .X3DConstants .SFMatrix3f]  = X3D .VRMLParser .prototype .sfmatrix3Value;
+   [X3D .X3DConstants .SFMatrix3d]  = X3D .VRMLParser .prototype .sfmatrix3Value;
+   [X3D .X3DConstants .SFMatrix4f]  = X3D .VRMLParser .prototype .sfmatrix4Value;
+   [X3D .X3DConstants .SFMatrix4d]  = X3D .VRMLParser .prototype .sfmatrix4Value;
+   [X3D .X3DConstants .SFNode] (field)
+   {
+      return false;
+   };
+   [X3D .X3DConstants .SFQuaternion] = X3D .VRMLParser .prototype .sfquaternionValue;
+   [X3D .X3DConstants .SFRotation]   = X3D .VRMLParser .prototype .sfrotationValue;
+   [X3D .X3DConstants .SFString] (field)
+   {
+      return false;
+   };
+   [X3D .X3DConstants .SFTime]       = X3D .VRMLParser .prototype .sfdoubleValue;
+   [X3D .X3DConstants .SFVec2d]      = X3D .VRMLParser .prototype .sfvec2Value;
+   [X3D .X3DConstants .SFVec2f]      = X3D .VRMLParser .prototype .sfvec2Value;
+   [X3D .X3DConstants .SFVec3d]      = X3D .VRMLParser .prototype .sfvec3Value;
+   [X3D .X3DConstants .SFVec3f]      = X3D .VRMLParser .prototype .sfvec3Value;
+   [X3D .X3DConstants .SFVec4d]      = X3D .VRMLParser .prototype .sfvec4Value;
+   [X3D .X3DConstants .SFVec4f]      = X3D .VRMLParser .prototype .sfvec4Value;
+
+   [X3D .X3DConstants .MFBool]       = X3D .VRMLParser .prototype .sfboolValues;
+   [X3D .X3DConstants .MFColor]      = X3D .VRMLParser .prototype .sfcolorValues;
+   [X3D .X3DConstants .MFColorRGBA]  = X3D .VRMLParser .prototype .sfcolorValues;
+   [X3D .X3DConstants .MFDouble]     = X3D .VRMLParser .prototype .sfdoubleValues;
+   [X3D .X3DConstants .MFFloat]      = X3D .VRMLParser .prototype .sfdoubleValues;
+   [X3D .X3DConstants .MFImage]      = X3D .VRMLParser .prototype .sfimageValues;
+   [X3D .X3DConstants .MFInt32]      = X3D .VRMLParser .prototype .sfint32Values;
+   [X3D .X3DConstants .MFMatrix3d]   = X3D .VRMLParser .prototype .sfmatrixValues;
+   [X3D .X3DConstants .MFMatrix3f]   = X3D .VRMLParser .prototype .sfmatrixValues;
+   [X3D .X3DConstants .MFMatrix4d]   = X3D .VRMLParser .prototype .sfmatrixValues;
+   [X3D .X3DConstants .MFMatrix4f]   = X3D .VRMLParser .prototype .sfmatrixValues;
+   [X3D .X3DConstants .MFQuaternion] = X3D .VRMLParser .prototype .sfquaternionValues;
+   [X3D .X3DConstants .MFRotation]   = X3D .VRMLParser .prototype .sfrotationValues;
+   [X3D .X3DConstants .MFString]     = X3D .VRMLParser .prototype .sfstringValues;
+   [X3D .X3DConstants .MFTime]       = X3D .VRMLParser .prototype .sfdoubleValues;
+   [X3D .X3DConstants .MFVec2d]      = X3D .VRMLParser .prototype .sfvecValues;
+   [X3D .X3DConstants .MFVec2f]      = X3D .VRMLParser .prototype .sfvecValues;
+   [X3D .X3DConstants .MFVec3d]      = X3D .VRMLParser .prototype .sfvecValues;
+   [X3D .X3DConstants .MFVec3f]      = X3D .VRMLParser .prototype .sfvecValues;
+   [X3D .X3DConstants .MFVec4d]      = X3D .VRMLParser .prototype .sfvecValues;
+   [X3D .X3DConstants .MFVec4f]      = X3D .VRMLParser .prototype .sfvecValues;
 };
 });
