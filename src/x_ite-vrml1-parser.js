@@ -1,9 +1,10 @@
-import register    from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
-import Coordinate3 from "./nodes/Coordinate3.js";
-import CustomNode  from "./nodes/CustomNode.js";
-import Material    from "./nodes/Material.js";
-import Separator   from "./nodes/Separator.js";
-import ShapeHints  from "./nodes/ShapeHints.js";
+import register       from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import Coordinate3    from "./nodes/Coordinate3.js";
+import CustomNode     from "./nodes/CustomNode.js";
+import IndexedFaceSet from "./nodes/IndexedFaceSet.js";
+import Material       from "./nodes/Material.js";
+import Separator      from "./nodes/Separator.js";
+import ShapeHints     from "./nodes/ShapeHints.js";
 
 register (X3D =>
 {
@@ -50,10 +51,11 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    nodes = new Map ([
-      ["Coordinate3", Coordinate3],
-      ["Material",    Material],
-      ["Separator",   Separator],
-      ["ShapeHints",  ShapeHints],
+      ["Coordinate3",    Coordinate3],
+      ["IndexedFaceSet", IndexedFaceSet],
+      ["Material",       Material],
+      ["Separator",      Separator],
+      ["ShapeHints",     ShapeHints],
    ]);
 
    substitutions = new Map ([
