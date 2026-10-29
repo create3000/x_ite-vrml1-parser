@@ -39,7 +39,6 @@ const Grammar = X3D .Expressions ({
    // Values
    int32: /(?:0[xX][\da-fA-F]+)|(?:[+-]?\d+)/y,
    double: /(?!0[xX])[+-]?(?:(?:(?:\d*\.\d+)|(?:\d+(?:\.)?))(?:[eE][+-]?\d+)?)/y,
-   enum: /([A-Z_-]+)/y,
 });
 
 return class VRML1Parser extends X3D .X3DParser
@@ -375,7 +374,7 @@ return class VRML1Parser extends X3D .X3DParser
 
       this .comments ();
 
-      while (Grammar .enum .parse (this))
+      while (this .Id ())
       {
          field .setValue (field .getValue () + this .result [0]);
 
