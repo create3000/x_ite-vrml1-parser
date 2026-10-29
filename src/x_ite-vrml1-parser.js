@@ -29,7 +29,7 @@ const Grammar = X3D .Expressions ({
    CloseBracket: /\]/y,
    Period:       /\./y,
    Colon:        /:/y,
-   VerticalBar:  /|/y,
+   VerticalBar:  /\|/y,
 
    // eslint-disable-next-line no-control-regex
    Id: /[^\x30-\x39\x00-\x20\x22\x23\x27\x2b\x2c\x2d\x2e\x5b\x5c\x5d\x7b\x7d\x7f]{1}[^\x00-\x20\x22\x23\x27\x2c\x2e\x5b\x5c\x5d\x7b\x7d\x7f]*/y,
@@ -39,6 +39,7 @@ const Grammar = X3D .Expressions ({
    // Values
    int32: /(?:0[xX][\da-fA-F]+)|(?:[+-]?\d+)/y,
    double: /(?!0[xX])[+-]?(?:(?:(?:\d*\.\d+)|(?:\d+(?:\.)?))(?:[eE][+-]?\d+)?)/y,
+   enum: /([A-Z_-]+)/y,
 });
 
 return class VRML1Parser extends X3D .X3DParser
@@ -200,8 +201,6 @@ return class VRML1Parser extends X3D .X3DParser
 
    node (nodeNameId)
    {
-      console .log (nodeNameId);
-
       const { lastIndex, lineNumber } = this;
 
       if (this .Id ())
@@ -330,7 +329,15 @@ return class VRML1Parser extends X3D .X3DParser
 
    fieldValue (field)
    {
-      return this [field .getType ()] .call (this .parser, field, field .getUnit ());
+      this .parser .lineNumber = this .lineNumber;
+      this .parser .lastIndex  = this .lastIndex;
+
+      const result = this [field .getType ()] .call (this .parser, field, field .getUnit ());
+
+      this .lineNumber = this .parser .lineNumber;
+      this .lastIndex  = this .parser .lastIndex;
+
+      return result;
    }
 
    Id ()
@@ -359,6 +366,32 @@ return class VRML1Parser extends X3D .X3DParser
    [X3D .X3DConstants .SFRotation]   = X3D .VRMLParser .prototype .sfrotationValue;
    [X3D .X3DConstants .SFString] (field)
    {
+      if (X3D .VRMLParser .prototype .sfstringValue (this .parser, field))
+         return true;
+
+      // Parse SFEnum and SFBitMask
+
+      field .setValue ("");
+
+      this .comments ();
+
+      while (Grammar .enum .parse (this))
+      {
+         field .setValue (field .getValue () + this .result [0]);
+
+         this .comments ();
+
+         if (Grammar .VerticalBar .parse (this))
+         {
+            field .setValue (field .getValue () + "|");
+
+            this .comments ();
+            continue;
+         }
+
+         return true;
+      }
+
       return false;
    };
    [X3D .X3DConstants .SFTime]       = X3D .VRMLParser .prototype .sfdoubleValue;
