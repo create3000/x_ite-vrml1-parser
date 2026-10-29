@@ -63,7 +63,9 @@ return class VRML1Parser extends X3D .X3DParser
 
    setInput (input)
    {
-      this .input = input;
+      this .input      = input;
+      this .lineNumber = 0;
+      this .lastIndex  = 0;
    }
 
    isValid ()
@@ -186,6 +188,8 @@ return class VRML1Parser extends X3D .X3DParser
    {
       console .log (nodeNameId);
 
+      const { lastIndex, lineNumber } = this;
+
       if (this .Id ())
       {
          const nodeTypeId = this .result [0];
@@ -206,8 +210,16 @@ return class VRML1Parser extends X3D .X3DParser
 
             this .comments ();
 
-            return Grammar .CloseBrace .parse (this);
+            if (Grammar .CloseBrace .parse (this))
+               return true;
+
+			   throw new Error ("Expected '}' at the end of node body.");
          }
+
+         this .lastIndex  = lastIndex;
+         this .lineNumber = lineNumber;
+
+         return false;
       }
 
       return false;
@@ -216,6 +228,22 @@ return class VRML1Parser extends X3D .X3DParser
    nodeBody (node)
    {
       console .log (node);
+
+      while (this .nodeBodyElement (node))
+		   ;
+   }
+
+   nodeBodyElement (node)
+   {
+      const child = this .nodeStatement ();
+
+      if (child)
+      {
+         node .fields .get ("children") .push (child);
+         return true;
+      }
+
+      return false;
    }
 
    Id ()

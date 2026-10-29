@@ -1,10 +1,9 @@
+import BaseNode from "./BaseNode.js";
 
-export default class CustomNode
+export default class CustomNode extends BaseNode
 {
    constructor (X3D, scene, name)
    {
-      this .X3D   = X3D;
-      this .scene = scene;
-      this .name  = name;
+      super (X3D, scene, name);
    }
 };
