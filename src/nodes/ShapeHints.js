@@ -9,6 +9,6 @@ export default class ShapeHints extends BaseNode
       this .fields .set ("vertexOrdering", new X3D .Fields .SFString ("COUNTERCLOCKWISE"));
       this .fields .set ("shapeType",      new X3D .Fields .SFString ("SOLID"));
       this .fields .set ("faceType",       new X3D .Fields .SFString ("CONVEX"));
-      this .fields .set ("creaseAngle",    new X3D .Fields .SFFloat (0));
+      this .fields .set ("creaseAngle",    new X3D .Fields .SFFloat ());
    }
 };
