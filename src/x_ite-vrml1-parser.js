@@ -16,9 +16,10 @@ const Grammar = X3D .Expressions ({
    LineFeed:    /\n/g,
 
    // Keywords
-   DEF:  /DEF/y,
-   NULL: /NULL/y,
-   USE:  /USE/y,
+   DEF:    /DEF/y,
+   fields: /fields/y,
+   NULL:   /NULL/y,
+   USE:    /USE/y,
 
    // Terminal symbols
    OpenBrace:    /\{/y,
@@ -27,6 +28,7 @@ const Grammar = X3D .Expressions ({
    CloseBracket: /\]/y,
    Period:       /\./y,
    Colon:        /:/y,
+   VerticalBar:  /|/y,
 
    // eslint-disable-next-line no-control-regex
    Id: /[^\x30-\x39\x00-\x20\x22\x23\x27\x2b\x2c\x2d\x2e\x5b\x5c\x5d\x7b\x7d\x7f]{1}[^\x00-\x20\x22\x23\x27\x2c\x2e\x5b\x5c\x5d\x7b\x7d\x7f]*/y,
@@ -46,6 +48,17 @@ return class VRML1Parser extends X3D .X3DParser
 
    nodes = new Map ([
       ["Separator", Separator],
+   ]);
+
+   substitutions = new Map ([
+      ["SFBitMask", "SFString"],
+      ["SFEnum",    "SFString"],
+      ["SFLong",    "SFInt32"],
+      ["SFMatrix",  "SFMatrix4f"],
+      ["MFBitMask", "MFString"],
+      ["MFEnum",    "MFString"],
+      ["MFLong",    "MFInt32"],
+      ["MFMatrix",  "MFMatrix4f"],
    ]);
 
    constructor (scene)
@@ -269,12 +282,49 @@ return class VRML1Parser extends X3D .X3DParser
 
    fieldElements (node)
    {
+      this .comments ();
 
+      if (Grammar .fields .parse (this))
+      {
+         this .comments ();
+
+         if (Grammar .OpenBracket .parse (this))
+         {
+            while (this .fieldElement (node))
+               ;
+
+            if (Grammar .CloseBracket .parse (this))
+               return;
+         }
+
+         throw new Error ("Couldn't parse custom fields.");
+      }
    }
 
    fieldElement (node)
    {
+	   this .comments ();
 
+      if (this .Id ())
+      {
+         const fieldType = this .substitutions .get (this .result [0])
+            ?? this .result [0];
+
+         this .comments ();
+
+         if (this .Id ())
+         {
+            const
+               fieldName = this .result [0],
+               field     = new (this .getBrowser () .getSupportedField (fieldType)) ();
+
+            node .fields .set (fieldName, field);
+
+            return true;
+         }
+      }
+
+      return false;
    }
 
    fieldValue (field)
