@@ -201,8 +201,11 @@ return class VRML1Parser extends X3D .X3DParser
          if (Grammar .OpenBrace .parse (this))
          {
             const
-               nodeType = this .nodes .get (nodeTypeId) ?? CustomNode,
-               node     = new nodeType (X3D, this .getScene (), nodeNameId);
+               nodeType = this .nodes .get (nodeTypeId),
+               node     = new (nodeType ?? CustomNode) (X3D, this .getScene (), nodeNameId);
+
+            if (!nodeType)
+               this .fieldsElements (node);
 
             this .nodeBody (node);
 
@@ -242,6 +245,11 @@ return class VRML1Parser extends X3D .X3DParser
       }
 
       return false;
+   }
+
+   fieldsElements (node)
+   {
+
    }
 
    Id ()
