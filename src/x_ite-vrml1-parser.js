@@ -1,7 +1,8 @@
-import register   from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
-import CustomNode from "./nodes/CustomNode.js";
-import Separator  from "./nodes/Separator.js";
-import ShapeHints from "./nodes/ShapeHints.js";
+import register    from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import Coordinate3 from "./nodes/Coordinate3.js";
+import CustomNode  from "./nodes/CustomNode.js";
+import Separator   from "./nodes/Separator.js";
+import ShapeHints  from "./nodes/ShapeHints.js";
 
 register (X3D =>
 {
@@ -48,8 +49,9 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    nodes = new Map ([
-      ["Separator",  Separator],
-      ["ShapeHints", ShapeHints],
+      ["Coordinate3", Coordinate3],
+      ["Separator",   Separator],
+      ["ShapeHints",  ShapeHints],
    ]);
 
    substitutions = new Map ([
