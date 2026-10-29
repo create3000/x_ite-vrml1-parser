@@ -45,7 +45,7 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    nodes = new Map ([
-      ["Separator", Separator (X3D)],
+      ["Separator", Separator],
    ]);
 
    constructor (scene)
@@ -199,8 +199,8 @@ return class VRML1Parser extends X3D .X3DParser
             const nodeType = this .nodes .get (nodeTypeId);
 
             const node = nodeType
-               ? new nodeType (this .getScene (), nodeNameId)
-               : new CustomNode (X3D) (this .getScene ());
+               ? new nodeType (X3D, this .getScene (), nodeNameId)
+               : new CustomNode (X3D, this .getScene ());
 
             this .nodeBody (node);
 

@@ -1,8 +1,9 @@
 
-export default X3D => class CustomNode
+export default class CustomNode
 {
-   constructor (scene, name)
+   constructor (X3D, scene, name)
    {
+      this .X3D   = X3D;
       this .scene = scene;
       this .name  = name;
    }

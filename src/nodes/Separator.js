@@ -1,8 +1,9 @@
 
-export default X3D => class Separator
+export default class Separator
 {
-   constructor (scene, name)
+   constructor (X3D, scene, name)
    {
+      this .X3D   = X3D;
       this .scene = scene;
       this .name  = name;
    }
