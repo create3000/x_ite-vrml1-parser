@@ -31,7 +31,7 @@ const Grammar = X3D .Expressions ({
    double: /(?!0[xX])[+-]?(?:(?:(?:\d*\.\d+)|(?:\d+(?:\.)?))(?:[eE][+-]?\d+)?)/y,
 });
 
-class VRML1Parser extends X3D .X3DParser
+return class VRML1Parser extends X3D .X3DParser
 {
    static {
       X3D .GoldenGate .addParsers (this);
@@ -40,6 +40,8 @@ class VRML1Parser extends X3D .X3DParser
    constructor (scene)
    {
       super (scene);
+
+      this .rootNodes = [ ];
    }
 
    getEncoding ()
@@ -59,12 +61,12 @@ class VRML1Parser extends X3D .X3DParser
 
    parseIntoScene (resolve, reject)
    {
-      this .vrml ()
+      this .vrml1 ()
          .then (resolve)
          .catch (reject);
    }
 
-   async vrml ()
+   async vrml1 ()
    {
       const
          browser = this .getBrowser (),
@@ -75,6 +77,72 @@ class VRML1Parser extends X3D .X3DParser
 
       await this .loadComponents ();
 
+      this .vrmlScene ();
+
       return scene;
    }
-}});
+
+   vrmlScene ()
+   {
+      this .statements ();
+   }
+
+   comments ()
+   {
+      while (this .comment ())
+         ;
+   }
+
+   comment ()
+   {
+      if (this .whitespaces ())
+         return true;
+
+      return Grammar .Comment .parse (this);
+   }
+
+   whitespaces ()
+   {
+      if (Grammar .Whitespaces .parse (this))
+      {
+         this .lines (this .result [0]);
+
+         return true;
+      }
+
+      return false;
+   }
+
+   lines (string)
+   {
+      const match = string .match (Grammar .LineFeed);
+
+      if (match)
+         this .lineNumber += match .length;
+   }
+
+   statements ()
+   {
+      while (this .statement ())
+		   ;
+   }
+
+   statement ()
+   {
+      const node = this .nodeStatement ();
+
+      if (node)
+      {
+         this .rootNodes .push (node);
+         return true;
+      }
+
+      return false;
+   }
+
+   nodeStatement ()
+   {
+      this .comments ();
+   }
+};
+});
