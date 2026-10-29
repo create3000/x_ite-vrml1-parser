@@ -1,6 +1,37 @@
 import register from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
 
-register (X3D => class VRML1Parser extends X3D .X3DParser
+register (X3D =>
+{
+/*
+*  Grammar
+*/
+
+// VRML lexical elements
+const Grammar = X3D .Expressions ({
+   // General
+   Whitespaces: /[\x20\n,\t\r]+/y,
+   Comment:     /#\/\*.*?\*\/#|#[^\r\n]*(?=[\r\n]|$)/sy,
+   LineFeed:    /\n/g,
+
+   // Terminal symbols
+   OpenBrace:    /\{/y,
+   CloseBrace:   /\}/y,
+   OpenBracket:  /\[/y,
+   CloseBracket: /\]/y,
+   Period:       /\./y,
+   Colon:        /:/y,
+
+   // eslint-disable-next-line no-control-regex
+   Id: /[^\x30-\x39\x00-\x20\x22\x23\x27\x2b\x2c\x2d\x2e\x5b\x5c\x5d\x7b\x7d\x7f]{1}[^\x00-\x20\x22\x23\x27\x2c\x2e\x5b\x5c\x5d\x7b\x7d\x7f]*/y,
+   // eslint-disable-next-line no-control-regex
+   ComponentNameId: /[^\x30-\x39\x00-\x20\x22\x23\x27\x2b\x2c\x2d\x2e\x5b\x5c\x5d\x7b\x7d\x7f\x3a]{1}[^\x00-\x20\x22\x23\x27\x2c\x2e\x5b\x5c\x5d\x7b\x7d\x7f\x3a]*/y,
+
+   // Values
+   int32: /(?:0[xX][\da-fA-F]+)|(?:[+-]?\d+)/y,
+   double: /(?!0[xX])[+-]?(?:(?:(?:\d*\.\d+)|(?:\d+(?:\.)?))(?:[eE][+-]?\d+)?)/y,
+});
+
+class VRML1Parser extends X3D .X3DParser
 {
    static {
       X3D .GoldenGate .addParsers (this);
@@ -23,8 +54,7 @@ register (X3D => class VRML1Parser extends X3D .X3DParser
 
    isValid ()
    {
-
-      return true;
+      return this .input .match (/^#VRML V1.0/);
    }
 
    parseIntoScene (resolve, reject)
@@ -47,4 +77,4 @@ register (X3D => class VRML1Parser extends X3D .X3DParser
 
       return scene;
    }
-});
+}});
