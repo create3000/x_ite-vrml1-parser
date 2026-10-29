@@ -7,9 +7,8 @@ export default class BaseNode
       this .scene    = scene;
       this .typeName = typeName;
       this .name     = name;
+      this .fields   = new Map ();
 
-      this .fields = new Map ([
-         ["children", new X3D .Fields .MFNode ()],
-      ]);
+      this .fields .set ("children", new X3D .Fields .MFNode ());
    }
 };
