@@ -4,6 +4,6 @@ export default class CustomNode extends BaseNode
 {
    constructor (X3D, scene, name)
    {
-      super (X3D, scene, name);
+      super (X3D, scene, "CustomNode", name);
    }
 };

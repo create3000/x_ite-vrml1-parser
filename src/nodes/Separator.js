@@ -4,6 +4,6 @@ export default class Separator extends BaseNode
 {
    constructor (X3D, scene, name)
    {
-      super (X3D, scene, name);
+      super (X3D, scene, "Separator", name);
    }
 };

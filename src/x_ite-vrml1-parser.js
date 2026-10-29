@@ -244,6 +244,26 @@ return class VRML1Parser extends X3D .X3DParser
          return true;
       }
 
+      if (this .Id ())
+      {
+         const
+            fieldId = this .result [0],
+            field   = node .fields .get (fieldId);
+
+         if (!field)
+            throw new Error (`Unknown field '${fieldId}' in class '${node .typeName}'.`);
+
+         if (field .isInitializable ())
+         {
+            if (this .fieldValue (field))
+               return true;
+
+            throw new Error (`Couldn't read value for field '${fieldId}'.`);
+         }
+
+         throw new Error (`Couldn't assign value to field '${fieldId}'.`);
+      }
+
       return false;
    }
 
@@ -253,6 +273,11 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    fieldElement (node)
+   {
+
+   }
+
+   fieldValue (field)
    {
 
    }
