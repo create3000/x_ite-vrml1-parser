@@ -1,4 +1,6 @@
-import register from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import register   from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import Separator  from "./nodes/Separator.js";
+import CustomNode from "./nodes/CustomNode.js";
 
 register (X3D =>
 {
@@ -41,6 +43,10 @@ return class VRML1Parser extends X3D .X3DParser
    static {
       X3D .GoldenGate .addParsers (this);
    }
+
+   nodes = new Map ([
+      ["Separator", Separator (X3D)],
+   ]);
 
    constructor (scene)
    {
@@ -192,11 +198,9 @@ return class VRML1Parser extends X3D .X3DParser
          {
             const nodeType = this .nodes .get (nodeTypeId);
 
-            const node;
-
-            // const node = nodeType
-            //    ? new nodeType (this .getScene (), nodeNameId)
-            //    : new CustomNode (this .getScene ());
+            const node = nodeType
+               ? new nodeType (this .getScene (), nodeNameId)
+               : new CustomNode (X3D) (this .getScene ());
 
             this .nodeBody (node);
 
