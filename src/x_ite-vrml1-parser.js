@@ -1,6 +1,7 @@
 import register    from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
 import Coordinate3 from "./nodes/Coordinate3.js";
 import CustomNode  from "./nodes/CustomNode.js";
+import Material    from "./nodes/Material.js";
 import Separator   from "./nodes/Separator.js";
 import ShapeHints  from "./nodes/ShapeHints.js";
 
@@ -50,6 +51,7 @@ return class VRML1Parser extends X3D .X3DParser
 
    nodes = new Map ([
       ["Coordinate3", Coordinate3],
+      ["Material",    Material],
       ["Separator",   Separator],
       ["ShapeHints",  ShapeHints],
    ]);
@@ -219,7 +221,7 @@ return class VRML1Parser extends X3D .X3DParser
          {
             const
                nodeType = this .nodes .get (nodeTypeId),
-               node     = new (nodeType ?? CustomNode) (X3D, this .getScene (), nodeNameId);
+               node     = new (nodeType ?? CustomNode) (X3D, this .getScene (), nodeTypeId, nodeNameId);
 
             if (!nodeType)
                this .fieldElements (node);
