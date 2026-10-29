@@ -215,17 +215,17 @@ return class VRML1Parser extends X3D .X3DParser
       {
          const nodeTypeId = this .result [0];
 
-         console .log (nodeTypeId);
-
          this .comments ();
 
          if (Grammar .OpenBrace .parse (this))
          {
-            const
-               nodeType = this .nodes .get (nodeTypeId),
-               node     = new (nodeType ?? CustomNode) (X3D, this .getScene (), nodeTypeId, nodeNameId);
+            console .log (nodeTypeId);
 
-            if (!nodeType)
+            const
+               nodeType = this .nodes .get (nodeTypeId) ?? CustomNode,
+               node     = new nodeType (X3D, this .getScene (), nodeTypeId, nodeNameId);
+
+            if (nodeType === CustomNode)
                this .fieldElements (node);
 
             this .nodeBody (node);
@@ -249,8 +249,6 @@ return class VRML1Parser extends X3D .X3DParser
 
    nodeBody (node)
    {
-      console .log (node);
-
       while (this .nodeBodyElement (node))
 		   ;
    }
