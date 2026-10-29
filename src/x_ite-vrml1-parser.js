@@ -2,8 +2,7 @@ import register from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
 
 register (X3D => class VRML1Parser extends X3D .X3DParser
 {
-   static
-   {
+   static {
       X3D .GoldenGate .addParsers (this);
    }
 
