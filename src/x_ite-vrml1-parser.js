@@ -13,6 +13,11 @@ const Grammar = X3D .Expressions ({
    Comment:     /#\/\*.*?\*\/#|#[^\r\n]*(?=[\r\n]|$)/sy,
    LineFeed:    /\n/g,
 
+   // Keywords
+   DEF:  /DEF/y,
+   NULL: /NULL/y,
+   USE:  /USE/y,
+
    // Terminal symbols
    OpenBrace:    /\{/y,
    CloseBrace:   /\}/y,
@@ -41,7 +46,8 @@ return class VRML1Parser extends X3D .X3DParser
    {
       super (scene);
 
-      this .rootNodes = [ ];
+      this .namedNodes = new Map ();
+      this .rootNodes  = [ ];
    }
 
    getEncoding ()
@@ -143,6 +149,76 @@ return class VRML1Parser extends X3D .X3DParser
    nodeStatement ()
    {
       this .comments ();
+
+      if (Grammar .DEF .parse (this))
+      {
+         if (this .Id ())
+            return this .node (this .result [0]);
+
+         throw new Error ("No name given after DEF.");
+      }
+
+      if (Grammar .USE .parse (this))
+      {
+         if (this .Id ())
+         {
+            const nodeNameId = this .result [0];
+
+            return this .namedNodes .get (nodeNameId);
+         }
+
+         throw new Error ("No name given after USE.");
+      }
+
+      if (Grammar .NULL .parse (this))
+         return null;
+
+      return this .node ("");
+   }
+
+   node (nodeNameId)
+   {
+      console .log (nodeNameId);
+
+      if (this .Id ())
+      {
+         const nodeTypeId = this .result [0];
+
+         console .log (nodeTypeId);
+
+         this .comments ();
+
+         if (Grammar .OpenBrace .parse (this))
+         {
+            const nodeType = this .nodes .get (nodeTypeId);
+
+            const node;
+
+            // const node = nodeType
+            //    ? new nodeType (this .getScene (), nodeNameId)
+            //    : new CustomNode (this .getScene ());
+
+            this .nodeBody (node);
+
+            this .comments ();
+
+            return Grammar .CloseBrace .parse (this);
+         }
+      }
+
+      return false;
+   }
+
+   nodeBody (node)
+   {
+      console .log (node);
+   }
+
+   Id ()
+   {
+      this .comments ();
+
+      return Grammar .Id .parse (this);
    }
 };
 });
