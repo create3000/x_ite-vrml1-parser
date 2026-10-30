@@ -1,0 +1,9 @@
+import BaseNode from "./BaseNode.js";
+
+export default class Rotation extends BaseNode
+{
+   constructor (X3D, scene, typeName, name)
+   {
+      super (X3D, scene, typeName, name);
+   }
+};

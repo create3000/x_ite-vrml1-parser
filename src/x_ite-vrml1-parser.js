@@ -1,10 +1,50 @@
-import register       from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
-import Coordinate3    from "./nodes/Coordinate3.js";
-import CustomNode     from "./nodes/CustomNode.js";
-import IndexedFaceSet from "./nodes/IndexedFaceSet.js";
-import Material       from "./nodes/Material.js";
-import Separator      from "./nodes/Separator.js";
-import ShapeHints     from "./nodes/ShapeHints.js";
+import register           from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import Background         from "./nodes/Background.js";
+import CollideStyle       from "./nodes/CollideStyle.js";
+import Cone               from "./nodes/Cone.js";
+import Coordinate3        from "./nodes/Coordinate3.js";
+import Cube               from "./nodes/Cube.js";
+import CustomNode         from "./nodes/CustomNode.js";
+import Cylinder           from "./nodes/Cylinder.js";
+import DirectedSound      from "./nodes/DirectedSound.js";
+import DirectionalLight   from "./nodes/DirectionalLight.js";
+import ElevationGrid      from "./nodes/ElevationGrid.js";
+import Environment        from "./nodes/Environment.js";
+import FontStyle          from "./nodes/FontStyle.js";
+import GeneralCylinder    from "./nodes/GeneralCylinder.js";
+import IndexedFaceSet     from "./nodes/IndexedFaceSet.js";
+import IndexedLineSet     from "./nodes/IndexedLineSet.js";
+import Info               from "./nodes/Info.js";
+import LOD                from "./nodes/LOD.js";
+import Material           from "./nodes/Material.js";
+import MaterialBinding    from "./nodes/MaterialBinding.js";
+import MatrixTransform    from "./nodes/MatrixTransform.js";
+import NavigationInfo     from "./nodes/NavigationInfo.js";
+import Normal             from "./nodes/Normal.js";
+import NormalBinding      from "./nodes/NormalBinding.js";
+import OrthographicCamera from "./nodes/OrthographicCamera.js";
+import PerspectiveCamera  from "./nodes/PerspectiveCamera.js";
+import PointLight         from "./nodes/PointLight.js";
+import PointSet           from "./nodes/PointSet.js";
+import PointSound         from "./nodes/PointSound.js";
+import Rotation           from "./nodes/Rotation.js";
+import Scale              from "./nodes/Scale.js";
+import Separator          from "./nodes/Separator.js";
+import ShapeHints         from "./nodes/ShapeHints.js";
+import Sphere             from "./nodes/Sphere.js";
+import SpotLight          from "./nodes/SpotLight.js";
+import Switch             from "./nodes/Switch.js";
+import Text               from "./nodes/Text.js";
+import TextLanguage       from "./nodes/TextLanguage.js";
+import Texture2           from "./nodes/Texture2.js";
+import Texture2Transform  from "./nodes/Texture2Transform.js";
+import TextureCoordinate2 from "./nodes/TextureCoordinate2.js";
+import Transform          from "./nodes/Transform.js";
+import Translation        from "./nodes/Translation.js";
+import VRML1Node          from "./nodes/VRML1Node.js";
+import WWWAnchor          from "./nodes/WWWAnchor.js";
+import WWWInline          from "./nodes/WWWInline.js";
+import WorldInfo          from "./nodes/WorldInfo.js";
 
 register (X3D =>
 {
@@ -51,11 +91,52 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    nodes = new Map ([
-      ["Coordinate3",    Coordinate3],
-      ["IndexedFaceSet", IndexedFaceSet],
-      ["Material",       Material],
-      ["Separator",      Separator],
-      ["ShapeHints",     ShapeHints],
+      ["Background",         Background],
+      ["CollideStyle",       CollideStyle],
+      ["Cone",               Cone],
+      ["Coordinate3",        Coordinate3],
+      ["Cube",               Cube],
+      ["CustomNode",         CustomNode],
+      ["Cylinder",           Cylinder],
+      ["DirectedSound",      DirectedSound],
+      ["DirectionalLight",   DirectionalLight],
+      ["ElevationGrid",      ElevationGrid],
+      ["Environment",        Environment],
+      ["FontStyle",          FontStyle],
+      ["GeneralCylinder",    GeneralCylinder],
+      ["IndexedFaceSet",     IndexedFaceSet],
+      ["IndexedLineSet",     IndexedLineSet],
+      ["Info",               Info],
+      ["LOD",                LOD],
+      ["Material",           Material],
+      ["MaterialBinding",    MaterialBinding],
+      ["MatrixTransform",    MatrixTransform],
+      ["NavigationInfo",     NavigationInfo],
+      ["Normal",             Normal],
+      ["NormalBinding",      NormalBinding],
+      ["OrthographicCamera", OrthographicCamera],
+      ["PerspectiveCamera",  PerspectiveCamera],
+      ["PointLight",         PointLight],
+      ["PointSet",           PointSet],
+      ["PointSound",         PointSound],
+      ["Rotation",           Rotation],
+      ["Scale",              Scale],
+      ["Separator",          Separator],
+      ["ShapeHints",         ShapeHints],
+      ["Sphere",             Sphere],
+      ["SpotLight",          SpotLight],
+      ["Switch",             Switch],
+      ["Text",               Text],
+      ["TextLanguage",       TextLanguage],
+      ["Texture2",           Texture2],
+      ["Texture2Transform",  Texture2Transform],
+      ["TextureCoordinate2", TextureCoordinate2],
+      ["Transform",          Transform],
+      ["Translation",        Translation],
+      ["VRML1Node",          VRML1Node],
+      ["WWWAnchor",          WWWAnchor],
+      ["WWWInline",          WWWInline],
+      ["WorldInfo",          WorldInfo],
    ]);
 
    substitutions = new Map ([
