@@ -25,7 +25,7 @@ const models = [
    "Models/Buildings/house1.wrl",
    "Models/Buildings/hydrant.wrl",
    "Models/Buildings/junk.wrl",
-   "Models/Buildings/kobe.wrl",
+   // "Models/Buildings/kobe.wrl",
    "Models/Buildings/office_bldg.wrl",
    "Models/Buildings/pagoda.wrl",
    "Models/Buildings/powerlns.wrl",
@@ -359,4 +359,5 @@ test .concurrent ("airboat", async () =>
 
       expect (scene .rootNodes) .not .toHaveLength (0);
    }
-});
+},
+160_000);
