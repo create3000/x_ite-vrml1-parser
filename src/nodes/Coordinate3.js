@@ -2,9 +2,9 @@ import BaseNode from "./BaseNode.js";
 
 export default class Coordinate3 extends BaseNode
 {
-   constructor (X3D, name)
+   constructor (X3D, typeName, name)
    {
-      super (X3D, "Coordinate3", name);
+      super (X3D, typeName, name);
 
       this .fields .set ("point", new X3D .Fields .MFVec3f ());
    }
@@ -33,7 +33,7 @@ export default class Coordinate3 extends BaseNode
 
       // Create nodes.
 
-      const coordNode = converter .scene .createNode("Coordinate");
+      const coordNode = converter .scene .createNode ("Coordinate");
 
       // Set name.
 

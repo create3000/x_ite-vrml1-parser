@@ -2,9 +2,9 @@ import BaseNode from "./BaseNode.js";
 
 export default class IndexedFaceSet extends BaseNode
 {
-   constructor (X3D, name)
+   constructor (X3D, typeName, name)
    {
-      super (X3D, "IndexedFaceSet", name);
+      super (X3D, typeName, name);
 
       this .fields .set ("vertexOrdering", new X3D .Fields .SFString ("COUNTERCLOCKWISE"));
 
@@ -42,10 +42,12 @@ export default class IndexedFaceSet extends BaseNode
 
       if (converter .shapeHints .length)
       {
-         geometryNode .ccw         = converter .shapeHints .at (-1) .ccw;
-         geometryNode .solid       = converter .shapeHints .at (-1) .solid;
-         geometryNode .convex      = converter .shapeHints .at (-1) .convex;
-         geometryNode .creaseAngle = converter .shapeHints .at (-1) .creaseAngle;
+         const shapeHints = converter .shapeHints .at (-1);
+
+         geometryNode .ccw         = shapeHints .ccw;
+         geometryNode .solid       = shapeHints .solid;
+         geometryNode .convex      = shapeHints .convex;
+         geometryNode .creaseAngle = shapeHints .creaseAngle;
       }
 
       // XXX: Always set solid to false.

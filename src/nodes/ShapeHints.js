@@ -2,9 +2,9 @@ import BaseNode from "./BaseNode.js";
 
 export default class ShapeHints extends BaseNode
 {
-   constructor (X3D, name)
+   constructor (X3D, typeName, name)
    {
-      super (X3D, "ShapeHints", name);
+      super (X3D, typeName, name);
 
       this .fields .set ("vertexOrdering", new X3D .Fields .SFString ("COUNTERCLOCKWISE"));
       this .fields .set ("shapeType",      new X3D .Fields .SFString ("SOLID"));

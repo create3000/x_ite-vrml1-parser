@@ -6,7 +6,7 @@ export default class NormalBinding extends BaseNode
    {
       super (X3D, typeName, name);
 
-      this .fields .set ("value", X3D .Fields .SFString (""));
+      this .fields .set ("value", X3D .Fields .SFString ());
    }
 
    get value ()
