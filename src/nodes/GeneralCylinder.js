@@ -6,4 +6,9 @@ export default class GeneralCylinder extends BaseNode
    {
       super (X3D, scene, typeName, name);
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };

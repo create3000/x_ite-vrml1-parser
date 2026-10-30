@@ -8,4 +8,9 @@ export default class Coordinate3 extends BaseNode
 
       this .fields .set ("point", new X3D .Fields .MFVec3f ());
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };

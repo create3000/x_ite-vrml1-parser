@@ -13,4 +13,9 @@ export default class IndexedFaceSet extends BaseNode
       this .fields .set ("normalIndex",       new X3D .Fields .MFInt32 (-1)),
       this .fields .set ("textureCoordIndex", new X3D .Fields .MFInt32 (-1));
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };

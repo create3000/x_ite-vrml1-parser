@@ -11,4 +11,7 @@ export default class BaseNode
 
       this .fields .set ("children", [ ]);
    }
+
+   convert ()
+   { }
 };

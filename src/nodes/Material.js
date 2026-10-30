@@ -15,4 +15,9 @@ export default class Material extends BaseNode
       this .fields .set ("shininess",     new X3D .Fields .MFFloat (0.2));
       this .fields .set ("transparency",  new X3D .Fields .MFFloat (0));
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };

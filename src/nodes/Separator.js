@@ -6,4 +6,9 @@ export default class Separator extends BaseNode
    {
       super (X3D, scene, "Separator", name);
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };

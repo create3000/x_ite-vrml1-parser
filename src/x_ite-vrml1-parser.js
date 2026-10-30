@@ -44,6 +44,7 @@ import Translation        from "./nodes/Translation.js";
 import WWWAnchor          from "./nodes/WWWAnchor.js";
 import WWWInline          from "./nodes/WWWInline.js";
 import WorldInfo          from "./nodes/WorldInfo.js";
+import Converter          from "./Converter.js";
 
 register (X3D =>
 {
@@ -209,7 +210,25 @@ return class VRML1Parser extends X3D .X3DParser
 
       await this .loadComponents ();
 
+		this .convert ();
+
+      console .log (scene .toVRMLString ());
+
+      // Optimize scene.
+
+      // TODO: Run Optimizer.
+
       return scene;
+   }
+
+   convert ()
+   {
+      const
+         scene     = this .getScene (),
+         converter = new Converter ();
+
+      for (const node of this .rootNodes)
+         scene .rootNodes .push (node .convert (converter));
    }
 
    vrmlScene ()
@@ -315,7 +334,7 @@ return class VRML1Parser extends X3D .X3DParser
 
          if (Grammar .OpenBrace .parse (this))
          {
-            console .log (nodeTypeId);
+            // console .log (nodeTypeId);
 
             const
                nodeType = VRML1Parser .nodes .get (nodeTypeId) ?? CustomNode,
@@ -329,7 +348,7 @@ return class VRML1Parser extends X3D .X3DParser
             this .comments ();
 
             if (Grammar .CloseBrace .parse (this))
-               return true;
+               return node;
 
 			   throw new Error ("Expected '}' at the end of node body.");
          }

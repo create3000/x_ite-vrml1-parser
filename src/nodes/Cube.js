@@ -6,4 +6,9 @@ export default class Cube extends BaseNode
    {
       super (X3D, scene, typeName, name);
    }
+
+   convert (converter)
+   {
+      void converter;
+   }
 };
