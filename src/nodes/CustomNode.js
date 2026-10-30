@@ -7,8 +7,6 @@ export default class CustomNode extends BaseNode
       super (X3D, typeName, name);
    }
 
-   convert (converter)
-   {
-      console .log ("convert", this .typeName);
-   }
+   convert ()
+   { }
 };
