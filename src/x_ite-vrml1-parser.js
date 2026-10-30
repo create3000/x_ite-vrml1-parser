@@ -1,4 +1,5 @@
 import register           from "../node_modules/x_ite-extension/dist/x_ite-extension.js";
+import AsciiText          from "./nodes/AsciiText.js";
 import Background         from "./nodes/Background.js";
 import CollideStyle       from "./nodes/CollideStyle.js";
 import Cone               from "./nodes/Cone.js";
@@ -92,6 +93,7 @@ return class VRML1Parser extends X3D .X3DParser
    }
 
    static nodes = new Map ([
+      ["AsciiText",          AsciiText],
       ["Background",         Background],
       ["CollideStyle",       CollideStyle],
       ["Cone",               Cone],
