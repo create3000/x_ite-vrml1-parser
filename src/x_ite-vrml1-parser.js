@@ -216,16 +216,6 @@ return class VRML1Parser extends X3D .X3DParser
 
 		this .convert ();
 
-      // Optimize scene.
-
-      const optimizer = new X3D .X3DOptimizer ();
-
-      optimizer .removeEmptyGroups     = true;
-      optimizer .combineGroupingNodes  = true;
-      optimizer .optimizeInterpolators = true;
-
-      optimizer .optimizeSceneGraph (scene .rootNodes);
-
       // console .log (scene .toVRMLString ());
 
       return scene;
