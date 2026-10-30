@@ -2,9 +2,9 @@ import BaseNode from "./BaseNode.js";
 
 export default class IndexedFaceSet extends BaseNode
 {
-   constructor (X3D, scene, name)
+   constructor (X3D, name)
    {
-      super (X3D, scene, "IndexedFaceSet", name);
+      super (X3D, "IndexedFaceSet", name);
 
       this .fields .set ("vertexOrdering", new X3D .Fields .SFString ("COUNTERCLOCKWISE"));
 
@@ -16,6 +16,6 @@ export default class IndexedFaceSet extends BaseNode
 
    convert (converter)
    {
-      void converter;
+      console .log ("convert", this .typeName);
    }
 };

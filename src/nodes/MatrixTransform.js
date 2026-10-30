@@ -2,13 +2,13 @@ import BaseNode from "./BaseNode.js";
 
 export default class MatrixTransform extends BaseNode
 {
-   constructor (X3D, scene, typeName, name)
+   constructor (X3D, typeName, name)
    {
-      super (X3D, scene, typeName, name);
+      super (X3D, typeName, name);
    }
 
    convert (converter)
    {
-      void converter;
+      console .log ("convert", this .typeName);
    }
 };

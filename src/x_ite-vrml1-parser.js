@@ -223,12 +223,10 @@ return class VRML1Parser extends X3D .X3DParser
 
    convert ()
    {
-      const
-         scene     = this .getScene (),
-         converter = new Converter ();
+      const converter = new Converter (this .getScene ());
 
       for (const node of this .rootNodes)
-         scene .rootNodes .push (node .convert (converter));
+         node .convert (converter);
    }
 
    vrmlScene ()

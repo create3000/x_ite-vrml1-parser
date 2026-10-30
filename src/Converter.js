@@ -28,6 +28,11 @@ export default class Converter
 	#materialBindingsSize = [ ];
 	#normalBindingsSize = [ ];
 
+   constructor (scene)
+   {
+      this .scene = scene;
+   }
+
    save ()
    {
       this .#transformsSize        .push (this .transforms        .length);

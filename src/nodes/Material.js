@@ -2,9 +2,9 @@ import BaseNode from "./BaseNode.js";
 
 export default class Material extends BaseNode
 {
-   constructor (X3D, scene, typeName, name)
+   constructor (X3D, typeName, name)
    {
-      super (X3D, scene, "Material", typeName, name);
+      super (X3D, "Material", typeName, name);
 
       this .fields .set ("point", new X3D .Fields .MFVec3f ());
 
@@ -18,6 +18,6 @@ export default class Material extends BaseNode
 
    convert (converter)
    {
-      void converter;
+      console .log ("convert", this .typeName);
    }
 };
