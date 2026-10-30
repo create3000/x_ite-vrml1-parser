@@ -19,12 +19,12 @@ export default class WWWAnchor extends BaseNode
       // Create Transform node.
 
       const
-         transformNode = converter .scene .createNode ("Transform>"),
+         transformNode = converter .scene .createNode ("Transform"),
          anchorNode    = converter .scene .createNode ("Anchor");
 
       // Set values.
 
-      transformNode .children () .push (anchorNode);
+      transformNode .children .push (anchorNode);
 
       anchorNode .url         = this .fields .get ("name");
       anchorNode .description = this .fields .get ("description");

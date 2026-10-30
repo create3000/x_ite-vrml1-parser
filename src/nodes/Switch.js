@@ -17,12 +17,12 @@ export default class Switch extends BaseNode
       // Create Transform node.
 
       const
-         transformNode = converter .scene .createNode ("Transform>"),
+         transformNode = converter .scene .createNode ("Transform"),
          switchNode    = converter .scene .createNode ("Switch");
 
       // Set values.
 
-      transformNode .children () .push (switchNode);
+      transformNode .children .push (switchNode);
 
       switchNode .whichChoice = this .fields .get ("whichChild");
 

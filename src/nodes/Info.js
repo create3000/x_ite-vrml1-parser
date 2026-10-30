@@ -27,7 +27,7 @@ export default class Info extends BaseNode
          // Assign values.
 
          metadataNode .name      = "Info";
-         metadataNode .reference = this .scene .getBrowser () .getProviderUrl ();
+         metadataNode .reference = converter .scene .getBrowser () .providerURL;
          metadataNode .value     = [ this .fields .get ("string") .getValue () ];
 
          converter .groups .at (-1) .metadata = metadataNode;

@@ -388,7 +388,7 @@ return class VRML1Parser extends X3D .X3DParser
             if (this .fieldValue (field))
                return true;
 
-            throw new Error (`Couldn't read value for field '${fieldId}'.`);
+            throw new Error (`Couldn't read value for field '${fieldId}' of node ${node .typeName}.`);
          }
 
          throw new Error (`Couldn't assign value to field '${fieldId}'.`);
@@ -471,7 +471,7 @@ return class VRML1Parser extends X3D .X3DParser
 
    [X3D .X3DConstants .SFString] (field)
    {
-      if (X3D .VRMLParser .prototype .sfstringValue (this .parser, field))
+      if (X3D .VRMLParser .prototype .sfstringValue .call (this, field))
          return true;
 
       // Parse SFEnum and SFBitMask
