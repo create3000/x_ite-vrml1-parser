@@ -214,7 +214,7 @@ return class VRML1Parser extends X3D .X3DParser
 
 		this .convert ();
 
-      console .log (scene .toVRMLString ());
+      // console .log (scene .toVRMLString ());
 
       // Optimize scene.
 
@@ -340,6 +340,9 @@ return class VRML1Parser extends X3D .X3DParser
                nodeType = VRML1Parser .nodes .get (nodeTypeId) ?? CustomNode,
                node     = new nodeType (X3D, nodeTypeId, nodeNameId);
 
+            if (nodeNameId)
+               this .namedNodes .set (nodeNameId, node);
+
             if (nodeType === CustomNode)
                this .fieldElements (node);
 
@@ -437,7 +440,7 @@ return class VRML1Parser extends X3D .X3DParser
          {
             const
                fieldName = this .result [0],
-               field     = new (this .getBrowser () .getSupportedField (fieldType)) ();
+               field     = new (this .getBrowser () .getFieldType (fieldType)) ();
 
             node .fields .set (fieldName, field);
 
