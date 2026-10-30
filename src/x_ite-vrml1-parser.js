@@ -336,7 +336,7 @@ return class VRML1Parser extends X3D .X3DParser
 
             const
                nodeType = VRML1Parser .nodes .get (nodeTypeId) ?? CustomNode,
-               node     = new nodeType (X3D, this .getScene (), nodeTypeId, nodeNameId);
+               node     = new nodeType (X3D, nodeTypeId, nodeNameId);
 
             if (nodeType === CustomNode)
                this .fieldElements (node);
