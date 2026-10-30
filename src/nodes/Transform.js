@@ -34,7 +34,7 @@ export default class Transform extends BaseNode
 
       m .setTransform (this .fields .get ("translation"),
                        this .fields .get ("rotation"),
-                       this .fields .get ("scale"),
+                       this .fields .get ("scaleFactor"),
                        this .fields .get ("scaleOrientation"),
                        this .fields .get ("center"));
 
