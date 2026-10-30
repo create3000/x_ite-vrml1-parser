@@ -5,10 +5,33 @@ export default class Scale extends BaseNode
    constructor (X3D, typeName, name)
    {
       super (X3D, typeName, name);
+
+      this .fields .set ("scaleFactor", new X3D .Fields .SFVec3f (1, 1, 1));
    }
 
    convert (converter)
    {
-      console .log ("convert", this .typeName);
+      const transform = converter .transforms .at (-1);
+
+      if (!transform)
+         return;
+
+      const { X3D } = this;
+
+      let matrix = new X3D .Fields .SFMatrix4f ();
+
+      matrix .setTransform (transform .translation,
+                            transform .rotation,
+                            transform .scale,
+                            transform .scaleOrientation,
+                            transform .center);
+
+      matrix = matrix .scale (this .fields .get ("scaleFactor"));
+
+      matrix .getTransform (transform .translation,
+                            transform .rotation,
+                            transform .scale,
+                            transform .scaleOrientation,
+                            transform .center);
    }
 };
