@@ -90,13 +90,12 @@ return class VRML1Parser extends X3D .X3DParser
       X3D .GoldenGate .addParsers (this);
    }
 
-   nodes = new Map ([
+   static nodes = new Map ([
       ["Background",         Background],
       ["CollideStyle",       CollideStyle],
       ["Cone",               Cone],
       ["Coordinate3",        Coordinate3],
       ["Cube",               Cube],
-      ["CustomNode",         CustomNode],
       ["Cylinder",           Cylinder],
       ["DirectedSound",      DirectedSound],
       ["DirectionalLight",   DirectionalLight],
@@ -139,7 +138,7 @@ return class VRML1Parser extends X3D .X3DParser
       ["WorldInfo",          WorldInfo],
    ]);
 
-   substitutions = new Map ([
+   static substitutions = new Map ([
       ["SFBitMask", "SFString"],
       ["SFEnum",    "SFString"],
       ["SFLong",    "SFInt32"],
@@ -303,7 +302,7 @@ return class VRML1Parser extends X3D .X3DParser
             console .log (nodeTypeId);
 
             const
-               nodeType = this .nodes .get (nodeTypeId) ?? CustomNode,
+               nodeType = VRML1Parser .nodes .get (nodeTypeId) ?? CustomNode,
                node     = new nodeType (X3D, this .getScene (), nodeTypeId, nodeNameId);
 
             if (nodeType === CustomNode)
@@ -394,7 +393,7 @@ return class VRML1Parser extends X3D .X3DParser
 
       if (this .Id ())
       {
-         const fieldType = this .substitutions .get (this .result [0])
+         const fieldType = VRML1Parser .substitutions .get (this .result [0])
             ?? this .result [0];
 
          this .comments ();
