@@ -3,11 +3,11 @@ export default class Converter
 	transforms = [ ];
 	groups = [ ];
 	materials = [ ];
-	textures = [ ];
-	textureTransforms = [ ];
-	texCoords = [ ];
-	normals = [ ];
-	coords = [ ];
+	textures = [ null ];
+	textureTransforms = [ null ];
+	texCoords = [ null ];
+	normals = [ null ];
+	coords = [ null ];
 
 	shapeHints = [ ];
 	materialBindings = [ ];
@@ -31,6 +31,8 @@ export default class Converter
    constructor (scene)
    {
       this .scene = scene;
+
+      this .materials .push (scene .createNode ("Material"));
    }
 
    save ()
