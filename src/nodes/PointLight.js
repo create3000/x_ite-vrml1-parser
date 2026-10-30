@@ -6,10 +6,10 @@ export default class PointLight extends BaseNode
    {
       super (X3D, typeName, name);
 
-      this .fields .set ("on",          new X3D .Fields .SFBool (true));
-      this .fields .set ("intensity",   new X3D .Fields .SFFloat (1));
-      this .fields .set ("color",       new X3D .Fields .SFColor (1, 1, 1));
-      this .fields .set ("location",    new X3D .Fields .SFVec3f (0, 0, 1));
+      this .fields .set ("on",        new X3D .Fields .SFBool (true));
+      this .fields .set ("intensity", new X3D .Fields .SFFloat (1));
+      this .fields .set ("color",     new X3D .Fields .SFColor (1, 1, 1));
+      this .fields .set ("location",  new X3D .Fields .SFVec3f (0, 0, 1));
    }
 
    convert (converter)
