@@ -12,7 +12,4 @@ export default class Text extends BaseNode
       this .fields .set ("spacing",       new X3D .Fields .SFFloat (1));
       this .fields .set ("width",         new X3D .Fields .MFFloat (0));
    }
-
-   convert ()
-   { }
 };

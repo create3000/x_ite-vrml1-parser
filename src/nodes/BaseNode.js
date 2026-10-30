@@ -11,9 +11,6 @@ export default class BaseNode
       this .fields .set ("children", [ ]);
    }
 
-   convert ()
-   { }
-
    use (converter)
    {
       try
@@ -36,5 +33,10 @@ export default class BaseNode
       {
          return false;
       }
+   }
+
+   convert ()
+   {
+      console .log ("VRML1Parser: convert:", this .typeName);
    }
 };
