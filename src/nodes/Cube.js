@@ -5,6 +5,10 @@ export default class Cube extends BaseNode
    constructor (X3D, typeName, name)
    {
       super (X3D, typeName, name);
+
+      this .fields .set ("width",  new X3D .Fields .SFFloat (2));
+      this .fields .set ("height", new X3D .Fields .SFFloat (2));
+      this .fields .set ("depth",  new X3D .Fields .SFFloat (2));
    }
 
    convert (converter)

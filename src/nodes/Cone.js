@@ -40,8 +40,8 @@ export default class Cone extends BaseNode
       if (converter .shapeHints .length)
          geometryNode .solid = converter .shapeHints .at (-1) .solid;
 
-      geometryNode .side         = !!this .fields .get ("parts") .getValue () .match (/ALL|SIDES/);
-      geometryNode .bottom       = !!this .fields .get ("parts") .getValue () .match (/ALL|BOTTOM/);
+      geometryNode .side         = this .fields .get ("parts") .getValue () .match (/ALL|SIDES/);
+      geometryNode .bottom       = this .fields .get ("parts") .getValue () .match (/ALL|BOTTOM/);
       geometryNode .bottomRadius = this .fields .get ("bottomRadius");
       geometryNode .height       = this .fields .get ("height");
 
