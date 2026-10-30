@@ -33,10 +33,6 @@ You can also install it from npm:
 npm i x_ite-vrml1-parser
 ```
 
-## Converter
-
-There is a converter at: https://superspl.at/convert
-
 ## License
 
 x_ite-vrml1-parser is free software and licensed under the [MIT License](LICENSE.md).
