@@ -52,5 +52,4 @@ export default class Texture2Transform extends BaseNode
 
       converter .textureTransforms .push (textureTransformNode);
    }
-
 };
