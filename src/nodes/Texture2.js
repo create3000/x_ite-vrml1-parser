@@ -57,7 +57,7 @@ export default class Texture2 extends BaseNode
       {
          // Create nodes.
 
-         const textureNode = converter .scene .createNode <X3D::PixelTexture> ();
+         const textureNode = converter .scene .createNode ("PixelTexture");
 
          // Set name.
 
