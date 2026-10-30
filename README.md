@@ -5,7 +5,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/x_ite-vrml1-parser/badge?style=rounded)](https://create3000.github.io/jsdelivr-download-stats/?username=create3000&repository=x_ite-vrml1-parser)
 [![npm Downloads](https://img.shields.io/npm/dm/x_ite-vrml1-parser)](https://npmtrends.com/x_ite-vrml1-parser)
 
-VRML1 File Format Parser for [X_ITE](https://create3000.github.io/x_ite/)
+VRML 1.0 File Format Parser for [X_ITE](https://create3000.github.io/x_ite/)
 
 ## Usage
 
