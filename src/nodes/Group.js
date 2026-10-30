@@ -9,9 +9,6 @@ export default class Separator extends BaseNode
 
    convert (converter)
    {
-      if (this .use (converter))
-         return;
-
       // Convert child
 
       for (const node of this .fields .get ("children"))
