@@ -8,6 +8,7 @@
     "dist/*"
   ],
   "scripts": {
+    "test": "vitest",
     "dist": "node build/dist.js",
     "prerelease": "npm run dist",
     "release": "node build/release.js",
@@ -38,6 +39,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.2",
+    "@vitest/browser-playwright": "^5.0.5",
     "eslint": "^10.13.0",
     "globals": "^17.13.0",
     "shell-tools": "^1.1.9",
