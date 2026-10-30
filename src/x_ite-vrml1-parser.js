@@ -41,7 +41,6 @@ import Texture2Transform  from "./nodes/Texture2Transform.js";
 import TextureCoordinate2 from "./nodes/TextureCoordinate2.js";
 import Transform          from "./nodes/Transform.js";
 import Translation        from "./nodes/Translation.js";
-import VRML1Node          from "./nodes/VRML1Node.js";
 import WWWAnchor          from "./nodes/WWWAnchor.js";
 import WWWInline          from "./nodes/WWWInline.js";
 import WorldInfo          from "./nodes/WorldInfo.js";
@@ -132,7 +131,6 @@ return class VRML1Parser extends X3D .X3DParser
       ["TextureCoordinate2", TextureCoordinate2],
       ["Transform",          Transform],
       ["Translation",        Translation],
-      ["VRML1Node",          VRML1Node],
       ["WWWAnchor",          WWWAnchor],
       ["WWWInline",          WWWInline],
       ["WorldInfo",          WorldInfo],
@@ -183,18 +181,33 @@ return class VRML1Parser extends X3D .X3DParser
          .catch (reject);
    }
 
+   static components = [
+      "EnvironmentalSensor",
+      "PointingDeviceSensor",
+      "Scripting",
+      "Sound",
+      "Text",
+   ];
+
    async vrml1 ()
    {
       const
          browser = this .getBrowser (),
          scene   = this .getScene ();
 
+      // Parse input.
+
+      this .vrmlScene ();
+
+      // Convert and create scene.
+
       scene .setEncoding ("VRML");
       scene .setProfile (browser .getProfile ("Interchange"));
 
-      await this .loadComponents ();
+      for (const componentName of VRML1Parser .components)
+         scene .updateComponent (browser .getComponent (componentName));
 
-      this .vrmlScene ();
+      await this .loadComponents ();
 
       return scene;
    }
@@ -202,6 +215,9 @@ return class VRML1Parser extends X3D .X3DParser
    vrmlScene ()
    {
       this .statements ();
+
+      if (this .lastIndex < this .input .length)
+         throw new Error ("Unknown statement.");
    }
 
    comments ()
