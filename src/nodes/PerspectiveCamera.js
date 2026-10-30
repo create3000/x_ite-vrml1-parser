@@ -21,7 +21,7 @@ export default class PerspectiveCamera extends BaseNode
 
       // Create nodes.
 
-      const viewpointNode = converter .scene .createNode ("OrthoViewpoint");
+      const viewpointNode = converter .scene .createNode ("Viewpoint");
 
       // Set name.
 

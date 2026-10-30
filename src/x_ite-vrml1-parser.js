@@ -12,6 +12,7 @@ import ElevationGrid      from "./nodes/ElevationGrid.js";
 import Environment        from "./nodes/Environment.js";
 import FontStyle          from "./nodes/FontStyle.js";
 import GeneralCylinder    from "./nodes/GeneralCylinder.js";
+import Group              from "./nodes/Group.js";
 import IndexedFaceSet     from "./nodes/IndexedFaceSet.js";
 import IndexedLineSet     from "./nodes/IndexedLineSet.js";
 import Info               from "./nodes/Info.js";
@@ -103,6 +104,7 @@ return class VRML1Parser extends X3D .X3DParser
       ["Environment",        Environment],
       ["FontStyle",          FontStyle],
       ["GeneralCylinder",    GeneralCylinder],
+      ["Group",              Group],
       ["IndexedFaceSet",     IndexedFaceSet],
       ["IndexedLineSet",     IndexedLineSet],
       ["Info",               Info],
