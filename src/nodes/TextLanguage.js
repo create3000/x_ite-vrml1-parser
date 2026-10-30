@@ -5,10 +5,7 @@ export default class TextLanguage extends BaseNode
    constructor (X3D, typeName, name)
    {
       super (X3D, typeName, name);
-   }
 
-   convert (converter)
-   {
-      console .log ("convert", this .typeName);
+      this .fields .set ("textLanguage", new X3D .Fields .SFString ());
    }
 };
