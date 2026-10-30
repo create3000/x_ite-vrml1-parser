@@ -34,7 +34,7 @@ export default class PerspectiveCamera extends BaseNode
       viewpointNode .orientation  = this .fields .get ("orientation");
       viewpointNode .fieldOfView  = this .fields .get ("heightAngle");
       viewpointNode .nearDistance = this .fields .get ("nearDistance");
-      viewpointNode .farDistance  = this .fields .get ("nearDistance");
+      viewpointNode .farDistance  = this .fields .get ("farDistance");
 
       if (converter .transforms .length)
          converter .groups .at (-1) .children .push (viewpointNode);

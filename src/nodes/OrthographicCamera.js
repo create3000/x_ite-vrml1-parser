@@ -36,7 +36,7 @@ export default class OrthographicCamera extends BaseNode
       viewpointNode .orientation  = this .fields .get ("orientation");
       viewpointNode .fieldOfView  = [ -height / 2, -height / 2, height / 2, height / 2 ];
       viewpointNode .nearDistance = this .fields .get ("nearDistance");
-      viewpointNode .farDistance  = this .fields .get ("nearDistance");
+      viewpointNode .farDistance  = this .fields .get ("farDistance");
 
       if (converter .transforms .length)
          converter .groups .at (-1) .children .push (viewpointNode);

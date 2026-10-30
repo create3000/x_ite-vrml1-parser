@@ -212,6 +212,8 @@ return class VRML1Parser extends X3D .X3DParser
 
 		this .convert ();
 
+      console .log (scene .toVRMLString ());
+
       // Optimize scene.
 
       // TODO: Run Optimizer.
