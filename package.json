@@ -1,7 +1,7 @@
 {
   "name": "x_ite-vrml1-parser",
   "version": "1.0.1",
-  "description": "VRML1 File Format Parser for X_ITE",
+  "description": "VRML 1.0 File Format Parser for X_ITE",
   "main": "dist/x_ite-vrml1-parser.js",
   "module": "dist/x_ite-vrml1-parser.js",
   "files": [
