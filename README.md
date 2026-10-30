@@ -19,7 +19,7 @@ Include the script before X_ITE:
 <script type="module" src="https://cdn.jsdelivr.net/npm/x_ite@VERSION/dist/x_ite.min.mjs"></script>
 ```
 
-You can now load VRML1 `.wrl` files directly using the `src` attribute, but you can also use `.wrl` files as source of an Inline node.
+You can now load VRML 1.0 `.wrl` files directly using the `src` attribute, but you can also use `.wrl` files as source of an Inline node.
 
 ```html
 <x3d-canvas src="room.wrl"></x3d-canvas>
