@@ -19,7 +19,7 @@ export default class Sphere extends BaseNode
       const
          shapeNode      = converter .scene .createNode ("Shape"),
          appearanceNode = converter .scene .createNode ("Appearance"),
-         geometryNode   = converter .scene .createNode ("Cylinder");
+         geometryNode   = converter .scene .createNode ("Sphere");
 
       // Set name.
 

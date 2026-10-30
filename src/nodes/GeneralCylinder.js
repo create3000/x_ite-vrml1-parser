@@ -23,7 +23,7 @@ export default class GeneralCylinder extends BaseNode
       const
          shapeNode      = converter .scene .createNode ("Shape"),
          appearanceNode = converter .scene .createNode ("Appearance"),
-         geometryNode   = converter .scene .createNode ("Cylinder");
+         geometryNode   = converter .scene .createNode ("Extrusion");
 
       // Set name.
 

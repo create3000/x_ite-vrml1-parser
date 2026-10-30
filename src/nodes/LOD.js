@@ -19,7 +19,7 @@ export default class LOD extends BaseNode
 
       const
          transformNode = converter .scene .createNode ("Transform"),
-         lodNode       = converter .scene .createNode ("Switch");
+         lodNode       = converter .scene .createNode ("LOD");
 
       // Set values.
 
