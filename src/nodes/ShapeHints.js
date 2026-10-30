@@ -12,8 +12,28 @@ export default class ShapeHints extends BaseNode
       this .fields .set ("creaseAngle",    new X3D .Fields .SFFloat ());
    }
 
+   get ccw ()
+   {
+      return this .fields .get ("vertexOrdering") .getValue () !== "CLOCKWISE";
+   }
+
+   get solid ()
+   {
+      return this .fields .get ("shapeType") .getValue () !== "UNKNOWN_SHAPE_TYPE";
+   }
+
+   get convex ()
+   {
+      return this .fields .get ("shapeType") .getValue () !== "UNKNOWN_FACE_TYPE";
+   }
+
+   get creaseAngle ()
+   {
+      return this .fields .get ("creaseAngle") .getValue ();
+   }
+
    convert (converter)
    {
-      console .log ("convert", this .typeName);
+      converter .shapeHints .push (this);
    }
 };
