@@ -152,25 +152,10 @@ return class VRML1Parser extends X3D .X3DParser
       ["MFMatrix",  "MFMatrix4f"],
    ]);
 
-   getEncoding ()
+   constructor (scene)
    {
-      return "STRING";
-   }
+      super (scene);
 
-   setInput (input)
-   {
-      this .input      = input;
-      this .lineNumber = 0;
-      this .lastIndex  = 0;
-   }
-
-   isValid ()
-   {
-      return this .input .match (/^#VRML V1.0/);
-   }
-
-   parseIntoScene (resolve, reject)
-   {
       this .parser     = new X3D .VRMLParser (this .getScene ());
       this .namedNodes = new Map ();
       this .rootNodes  = [ ];
@@ -180,7 +165,27 @@ return class VRML1Parser extends X3D .X3DParser
 
       this .parser .pushExecutionContext (this .getScene ());
       this .parser .setInput (this .input);
+   }
 
+   static getEncoding ()
+   {
+      return "STRING";
+   }
+
+   static isValid (input)
+   {
+      return input .match (/^#VRML V1.0/);
+   }
+
+   setInput (input)
+   {
+      this .input      = input;
+      this .lineNumber = 0;
+      this .lastIndex  = 0;
+   }
+
+   parseIntoScene (resolve, reject)
+   {
       this .vrml1 ()
          .then (resolve)
          .catch (reject);
