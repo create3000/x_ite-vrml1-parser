@@ -164,7 +164,6 @@ return class VRML1Parser extends X3D .X3DParser
       this .parser [X3D .X3DConstants .SFString] = this [X3D .X3DConstants .SFString];
 
       this .parser .pushExecutionContext (this .getScene ());
-      this .parser .setInput (this .input);
    }
 
    static getEncoding ()
@@ -182,6 +181,8 @@ return class VRML1Parser extends X3D .X3DParser
       this .input      = input;
       this .lineNumber = 0;
       this .lastIndex  = 0;
+
+      this .parser .setInput (this .input);
    }
 
    parseIntoScene (resolve, reject)
